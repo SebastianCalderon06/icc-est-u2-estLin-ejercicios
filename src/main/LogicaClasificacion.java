@@ -14,8 +14,20 @@ public class LogicaClasificacion {
      *         Entrada: "Hola Mundo"
      *         Salida: "odnuM aloH"
      */
+
+
+
     public String invertirCadena(String texto) {
-        return "";
+        StringBuilder sb = new StringBuilder();
+        Stack<String> st = new Stack<String>();
+        for(int i = 0; i<texto.length(); i++){
+            st.push(texto.charAt(i) + "");
+        }
+        while (!st.isEmpty()) {
+            sb.append(st.pop());
+        }
+
+        return sb.toString();
     }
 
     /**
@@ -30,8 +42,32 @@ public class LogicaClasificacion {
      *         Salida: true
      */
     public boolean validarSimbolos(String expresion) {
-        return false;
+    Stack<Character> st = new Stack<>();
+    for (int i = 0; i < expresion.length(); i++) {
+        char a = expresion.charAt(i);
+        if (a == '{' || a == '[' || a == '(') {
+            st.push(a);
+        }else if(a == '}' || a == ']' || a == ')') {
+            if(st.isEmpty()) {
+                return false;
+            }
+            if(st.peek() == '{' && a == '}'){
+                st.pop();
+            }else{
+            if(st.peek() == '[' && a == ']'){
+                st.pop();
+            }else{
+            if(st.peek() == '(' && a == ')'){
+                st.pop();
+            }}
+        }
+        if (st.isEmpty())
+            return true;
+        }
+    
     }
+    return false;
+}
 
     /**
      * Ordena una pila de enteros en orden ascendente usando otra pila auxiliar.
@@ -42,10 +78,27 @@ public class LogicaClasificacion {
      *         Entrada: [3, 1, 4, 2]
      *         Salida: [1, 2, 3, 4]
      */
-    public List<Integer> ordenarPila(Stack<Integer> pila) {
 
-        return new ArrayList<>();
-    }
+    public static List<Integer> ordenarPila(Stack<Integer> pila) {
+        Stack<Integer> auxiliar = new Stack<>();
+
+        while (!pila.isEmpty()) {
+            int temp = pila.pop();
+
+
+            while (!auxiliar.isEmpty() && auxiliar.peek() < temp) {
+                pila.push(auxiliar.pop());
+            }
+
+            auxiliar.push(temp);
+        }
+        List<Integer> resultado = new ArrayList<>();
+        while (!auxiliar.isEmpty()) {
+            resultado.add(auxiliar.pop());
+        }
+
+        return resultado;
+}
 
     /**
      * Clasifica una lista de enteros separando pares e impares.
