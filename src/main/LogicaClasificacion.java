@@ -110,8 +110,21 @@ public class LogicaClasificacion {
      *         Entrada: [1, 2, 3, 4, 5, 6]
      *         Salida: [2, 4, 6, 1, 3, 5]
      */
-    public List<Integer> clasificarPorParidad(LinkedList<Integer> original) {
+    public LinkedList<Integer> clasificarPorParidad(LinkedList<Integer> original) {
+        LinkedList<Integer> pares = new LinkedList<>();
+        LinkedList<Integer> impares = new LinkedList<>();
 
-        return new ArrayList<>();
+        for (Integer n : original) {
+            if (n % 2 == 0) {
+                pares.add(n);
+            } else {
+                impares.add(n);
+            }
+        }
+        LinkedList<Integer> resultado = new LinkedList<>();
+        resultado.addAll(pares);
+        resultado.addAll(impares);
+
+        return resultado;
     }
 }
